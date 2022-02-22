@@ -1,10 +1,13 @@
 const express = require("express");
+const cors = require("cors");
 const { morgan, logFormat } = require("./config/morgan");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(morgan(logFormat));
+app.use(express.static("build"));
 
 let persons = [
   {
@@ -55,6 +58,10 @@ const addPerson = ({ name, number }) => {
   persons.push(newPerson);
   return newPerson;
 };
+
+app.get("/info", (request, response) => {
+  response.send(getInfoHtml(persons));
+});
 
 app.get("/info", (request, response) => {
   response.send(getInfoHtml(persons));

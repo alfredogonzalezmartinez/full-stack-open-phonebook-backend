@@ -1,6 +1,6 @@
 # Backend de la agenda telefónica
 
-Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6) y [ejercicios 3.7.-3.8.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-7-3-8) del curso Full Stack open 2021
+Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 3.7.-3.8.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-7-3-8) y [ejercicios 3.9.-3.11.](https://fullstackopen.com/es/part3/implementacion_de_la_aplicacion_en_internet#ejercicios-3-9-3-11) del curso Full Stack open 2021
 
 ## Aplicación
 
@@ -80,4 +80,27 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
     npm install -E morgan
     ```
 
-11. Implementación del middleware morgan para registrar en consola de las peticiones al servidor.
+11. Implementación del middleware morgan para registrar en consola las peticiones al servidor.
+
+12. Instalación de [cors](https://github.com/expressjs/cors).
+
+    ```
+    npm install -E cors
+    ```
+
+13. Implementación del middleware cors para permitir solicitudes desde cualquier origen.
+
+14. Copia de una build del frontend de la agenda telefónica con rutas relativas para el consumo de la API.
+
+15. Implementación para servir los archivos estaticos de la build.
+
+16. Despliegue de la aplicación en [Heroku](https://heroku.com).
+
+    ```
+    echo "web: npm start" > Procfile
+    heroku create
+    git checkout -b main
+    git add .
+    git commit -m "Agregar Ejercicios 3.9.-3.11."
+    git push heroku main
+    ```
