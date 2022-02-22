@@ -1,6 +1,6 @@
 # Backend de la agenda telefónica
 
-Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6) del curso Full Stack open 2021
+Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6) y [ejercicios 3.7.-3.8.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-7-3-8) del curso Full Stack open 2021
 
 ## Aplicación
 
@@ -10,36 +10,29 @@ Para instalar también las dependencias de desarrollo use el comando `npm instal
 
 ### Scripts
 
-**`npm start`**
-Inicia la aplicación.
+- **`npm start`** Inicia la aplicación.
 
-**`npm run dev`**
-Inicia la aplicación en modo desarrollo.
+- **`npm run dev`** Inicia la aplicación en modo desarrollo.
 
 ### Endpoints
 
 ```
 GET    /info
-GET    /persons
-GET    /persons/:id
-POST   /persons
-DELETE /persons/:id
+GET    /api/persons
+GET    /api/persons/:id
+POST   /api/persons
+DELETE /api/persons/:id
 ```
 
-**`GET /info`**
-Devuelve la cantidad de contactos y la fecha de la solicitud en formato HTML.
+- **`GET /info`** Devuelve la cantidad de contactos y la fecha de la solicitud en formato HTML.
 
-**`GET /persons`**
-Devuelve todos los contactos en formato JSON.
+- **`GET /api/persons`** Devuelve todos los contactos en formato JSON.
 
-**`GET /persons/:id`**
-Devuelve el contacto con la id especificada en formato JSON.
+- **`GET /api/persons/:id`** Devuelve el contacto con la id especificada en formato JSON.
 
-**`POST /persons`**
-Añade un nuevo contacto y lo devuelve en formato JSON. Las propiedades `name` y `number` son requeridas.
+- **`POST /api/persons`** Añade un nuevo contacto y lo devuelve en formato JSON. Las propiedades `name` y `number` son requeridas.
 
-**`DELETE /persons/:id`**
-Elimina el contacto con la id especificada.
+- **`DELETE /api/persons/:id`** Elimina el contacto con la id especificada.
 
 ## Proceso
 
@@ -80,3 +73,11 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 8. Implementación del código necesario para eliminar un contacto específico cuando se haga una petición `DELETE` al endpoint `/api/persons/:id`
 
 9. Implementación del código necesario para añadir un nuevo contacto cuando se haga una petición `POST` al endpoint `/api/persons`
+
+10. Instalación de [morgan](https://github.com/expressjs/morgan).
+
+    ```
+    npm install -E morgan
+    ```
+
+11. Implementación del middleware morgan para registrar en consola de las peticiones al servidor.
