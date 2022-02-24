@@ -12,7 +12,11 @@ const addPerson = ({ name, number }) => {
 };
 
 const updatePerson = ({ id, name, number }) =>
-  Person.findByIdAndUpdate(id, { name, number }, { new: true });
+  Person.findByIdAndUpdate(
+    id,
+    { name, number },
+    { new: true, runValidators: true }
+  );
 
 const deletePerson = (id) => Person.findByIdAndRemove(id);
 

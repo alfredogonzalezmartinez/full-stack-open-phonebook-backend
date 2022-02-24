@@ -46,9 +46,6 @@ app.delete("/api/persons/:id", (request, response, next) => {
 
 app.post("/api/persons", (request, response, next) => {
   const { name, number } = request.body;
-  if (!name) return response.status(400).json({ error: "name is required" });
-  if (!number)
-    return response.status(400).json({ error: "number is required" });
   addPerson({ name, number })
     .then((newPerson) => response.json(newPerson))
     .catch(next);
@@ -68,7 +65,10 @@ app.use((request, response, next) => {
 
 app.use((error, request, response, next) => {
   console.log(error);
-  if (error.name === "CastError") return response.status(400).end();
+  if (error.name === "CastError")
+    return response.status(400).json({ error: "malformatted id" });
+  if (error.name === "ValidationError")
+    return response.status(400).json({ error: error.message });
   response.status(500).end();
 });
 

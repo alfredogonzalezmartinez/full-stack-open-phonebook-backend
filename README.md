@@ -143,8 +143,33 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 
 24. Implementación del borrado de los contactos en la base de datos.
 
-25. Remplazo de la build del frontend de para que funcione el borrado.
+25. Remplazo de la build del frontend para que funcione el borrado.
 
-26. Adición de un middleware para manejar los errores
+26. Adición de un middleware para manejar los errores.
 
 27. Implementación de la actualización del contacto en la base de datos cuando se haga una petición `PUT` al endpoint `/api/persons/:id`.
+
+28. Instalación de [mongoose-unique-validator](https://github.com/blakehaswell/mongoose-unique-validator).
+
+    ```
+    npm install -E mongoose-unique-validator
+    ```
+
+29. Implementación de validaciones en el modelo `Person`.
+
+30. Adición del error `ValidationError` en el middleware para manejar los errores.
+
+31. Adición de la opción para que se realicen las validaciones cuando se realiza una actualización.
+
+32. Remplazo de la build del frontend para que se muestren los errores de validación.
+
+33. Despliegue de la versión actual en Heroku.
+
+    ```
+    git add .
+    git commit -m "Agregar Ejercicios 3.19.-3.21."
+    git checkout main
+    git merge part3
+    heroku config:set MONGODB_URI=your.mongodb.uri
+    git push heroku main
+    ```
