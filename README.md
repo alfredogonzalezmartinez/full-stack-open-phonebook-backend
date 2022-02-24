@@ -1,6 +1,6 @@
 # Backend de la agenda telefónica
 
-Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 3.7.-3.8.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-7-3-8), [ejercicios 3.9.-3.11.](https://fullstackopen.com/es/part3/implementacion_de_la_aplicacion_en_internet#ejercicios-3-9-3-11), [ejercicio 3.12.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicio-3-12) y [ejercicios 3.13.-3.14.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicios-3-13-3-14) del curso Full Stack open 2021
+Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 3.7.-3.8.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-7-3-8), [ejercicios 3.9.-3.11.](https://fullstackopen.com/es/part3/implementacion_de_la_aplicacion_en_internet#ejercicios-3-9-3-11), [ejercicio 3.12.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicio-3-12) [ejercicios 3.13.-3.14.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicios-3-13-3-14) y [ejercicios 3.15.-3.18.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicios-3-15-3-18) del curso Full Stack open 2021
 
 ## Aplicación
 
@@ -31,6 +31,7 @@ GET    /info
 GET    /api/persons
 GET    /api/persons/:id
 POST   /api/persons
+PUT    /api/persons/:id
 DELETE /api/persons/:id
 ```
 
@@ -41,6 +42,8 @@ DELETE /api/persons/:id
 - **`GET /api/persons/:id`** Devuelve el contacto con la id especificada en formato JSON.
 
 - **`POST /api/persons`** Añade un nuevo contacto y lo devuelve en formato JSON. Las propiedades `name` y `number` son requeridas.
+
+- **`PUT /api/persons/:id`** Actualiza el contacto con la id especificada y lo devuelve en formato JSON.
 
 - **`DELETE /api/persons/:id`** Elimina el contacto con la id especificada.
 
@@ -78,11 +81,11 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 
 6. Implementación del código necesario para enviar la cantidad de contactos y la fecha actual cuando se haga una petición `GET` al endpoint `/info`.
 
-7. Implementación del código necesario para enviar un contacto específico cuando se haga una petición `GET` al endpoint `/api/persons/:id`
+7. Implementación del código necesario para enviar un contacto específico cuando se haga una petición `GET` al endpoint `/api/persons/:id`.
 
-8. Implementación del código necesario para eliminar un contacto específico cuando se haga una petición `DELETE` al endpoint `/api/persons/:id`
+8. Implementación del código necesario para eliminar un contacto específico cuando se haga una petición `DELETE` al endpoint `/api/persons/:id`.
 
-9. Implementación del código necesario para añadir un nuevo contacto cuando se haga una petición `POST` al endpoint `/api/persons`
+9. Implementación del código necesario para añadir un nuevo contacto cuando se haga una petición `POST` al endpoint `/api/persons`.
 
 10. Instalación de [morgan](https://github.com/expressjs/morgan).
 
@@ -137,3 +140,11 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 22. Implementación de la obtención de los contactos desde la base de datos.
 
 23. Implementación del guardado de los contactos en la base de datos.
+
+24. Implementación del borrado de los contactos en la base de datos.
+
+25. Remplazo de la build del frontend de para que funcione el borrado.
+
+26. Adición de un middleware para manejar los errores
+
+27. Implementación de la actualización del contacto en la base de datos cuando se haga una petición `PUT` al endpoint `/api/persons/:id`.
