@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { morgan, logFormat } = require("./config/morgan");
+const { getAllPersons, getPerson, addPerson } = require("./api");
 
 const app = express();
 
@@ -38,44 +39,32 @@ const getInfoHtml = (persons) => {
   return `<p>Phonebook has info for ${amauntPeople} people<p/><p>${date}<p/>`;
 };
 
-const getPerson = (id) => {
-  id = Number(id);
-  if (Number.isNaN(id)) return undefined;
-  return persons.find((person) => person.id === id);
-};
-
 const deletePerson = (id) => {
   id = Number(id);
   if (!Number.isNaN(id)) persons = persons.filter((person) => person.id !== id);
 };
-
-const getRandomId = () => Math.ceil(Math.random() * 1_000_000);
-
-const addPerson = ({ name, number }) => {
-  let id = getRandomId();
-  while (persons.some((person) => person.id === id)) id = getRandomId();
-  const newPerson = { name, number, id };
-  persons.push(newPerson);
-  return newPerson;
-};
-
-app.get("/info", (request, response) => {
-  response.send(getInfoHtml(persons));
-});
 
 app.get("/info", (request, response) => {
   response.send(getInfoHtml(persons));
 });
 
 app.get("/api/persons", (request, response) => {
-  response.json(persons);
+  getAllPersons()
+    .then((persons) => response.json(persons))
+    .catch(() => response.status(500).end);
 });
 
 app.get("/api/persons/:id", (request, response) => {
-  const id = request.params.id;
-  const person = getPerson(id);
-  if (!person) return response.status(404).end();
-  response.json(person);
+  const { id } = request.params;
+  getPerson(id)
+    .then((person) =>
+      person ? response.json(person) : response.status(404).end()
+    )
+    .catch((error) => {
+      error.name === "CastError"
+        ? response.status(400).end()
+        : response.status(500).end();
+    });
 });
 
 app.delete("/api/persons/:id", (request, response) => {
@@ -89,10 +78,13 @@ app.post("/api/persons", (request, response) => {
   if (!name) return response.status(400).json({ error: "name is required" });
   if (!number)
     return response.status(400).json({ error: "number is required" });
-  if (persons.some((person) => person.name === name))
-    return response.status(400).json({ error: "name must be unique" });
-  const newPerson = addPerson({ name, number });
-  response.json(newPerson);
+  addPerson({ name, number })
+    .then((newPerson) => response.json(newPerson))
+    .catch(() => response.status(500).end);
+});
+
+app.use((request, response, next) => {
+  response.status(404).end();
 });
 
 const PORT = process.env.PORT || 3001;

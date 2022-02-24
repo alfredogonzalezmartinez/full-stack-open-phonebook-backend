@@ -1,12 +1,22 @@
 # Backend de la agenda telefónica
 
-Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 3.7.-3.8.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-7-3-8) y [ejercicios 3.9.-3.11.](https://fullstackopen.com/es/part3/implementacion_de_la_aplicacion_en_internet#ejercicios-3-9-3-11) del curso Full Stack open 2021
+Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 3.7.-3.8.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-7-3-8), [ejercicios 3.9.-3.11.](https://fullstackopen.com/es/part3/implementacion_de_la_aplicacion_en_internet#ejercicios-3-9-3-11), [ejercicio 3.12.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicio-3-12) y [ejercicios 3.13.-3.14.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicios-3-13-3-14) del curso Full Stack open 2021
 
 ## Aplicación
 
-Para el funcionamiento de la aplicación es necesario instalar las dependencias. Use el comando `npm install`.
+Para el funcionamiento de la aplicación es necesario contar con una base de datos [MongoDB](https://www.mongodb.com/) e instalar las dependencias.
 
-Para instalar también las dependencias de desarrollo use el comando `npm install --production=false`.
+### Variables de entorno
+
+- **`MONGODB_URI`** URI para conectarse a la base de datos.
+
+- **`PORT`** Puerto en el que se inicia el servidor. Por defecto, 3001.
+
+### Dependencias
+
+Use el comando `npm install` instalar las dependencias.
+
+Para instalar también las dependencias de desarrollo utilice el comando `npm install --production=false`.
 
 ### Scripts
 
@@ -90,7 +100,7 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 
 13. Implementación del middleware cors para permitir solicitudes desde cualquier origen.
 
-14. Copia de una build del frontend de la agenda telefónica con rutas relativas para el consumo de la API.
+14. Copia de una build del [frontend de la agenda telefónica](https://github.com/alfredogonzalezmartinez/full-stack-open/tree/main/part2/phonebook) con rutas relativas para el consumo de la API.
 
 15. Implementación para servir los archivos estaticos de la build.
 
@@ -104,3 +114,26 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
     git commit -m "Agregar Ejercicios 3.9.-3.11."
     git push heroku main
     ```
+
+17. Creación de un clúster en [MongoDB Atlas](https://www.mongodb.com/atlas/database).
+
+18. Instalación de [Mongoose](https://mongoosejs.com/) y [dotenv](https://github.com/motdotla/dotenv).
+
+    ```
+    npm install -E mongoose dotenv
+    ```
+
+19. Creación de un archivo `.env` con la variable de entorno `MONGODB_URI` y adición de este al `.gitignore`.
+
+    ```
+    echo "MONGODB_URI=your.mongodb.uri" > .env
+    echo ".env" >> .gitignore
+    ```
+
+20. Configuración de la conexión a la base de datos con Mongoose.
+
+21. Creación del modelo `Person` para definir la estructura de los contactos.
+
+22. Implementación de la obtención de los contactos desde la base de datos.
+
+23. Implementación del guardado de los contactos en la base de datos.
