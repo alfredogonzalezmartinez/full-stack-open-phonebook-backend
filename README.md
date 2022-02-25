@@ -1,6 +1,6 @@
 # Backend de la agenda telefónica
 
-Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 3.7.-3.8.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-7-3-8), [ejercicios 3.9.-3.11.](https://fullstackopen.com/es/part3/implementacion_de_la_aplicacion_en_internet#ejercicios-3-9-3-11), [ejercicio 3.12.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicio-3-12) [ejercicios 3.13.-3.14.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicios-3-13-3-14) y [ejercicios 3.15.-3.18.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicios-3-15-3-18) del curso Full Stack open 2021
+Solución de los [ejercicios 3.1.-3.6.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 3.7.-3.8.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-7-3-8), [ejercicios 3.9.-3.11.](https://fullstackopen.com/es/part3/implementacion_de_la_aplicacion_en_internet#ejercicios-3-9-3-11), [ejercicio 3.12.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicio-3-12), [ejercicios 3.13.-3.14.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicios-3-13-3-14), [ejercicios 3.15.-3.18.](https://fullstackopen.com/es/part3/guardando_datos_en_mongo_db#ejercicios-3-15-3-18), [ejercicios 3.19.-3.21.](https://fullstackopen.com/es/part3/validacion_y_es_lint#ejercicios-3-19-3-21) y [ejercicio 3.22.](https://fullstackopen.com/es/part3/validacion_y_es_lint#ejercicio-3-22) del curso Full Stack open 2021
 
 ## Aplicación
 
@@ -23,6 +23,8 @@ Para instalar también las dependencias de desarrollo utilice el comando `npm in
 - **`npm start`** Inicia la aplicación.
 
 - **`npm run dev`** Inicia la aplicación en modo desarrollo.
+
+- **`npm run lint`** Ejecuta el linter.
 
 ### Endpoints
 
@@ -173,3 +175,29 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
     heroku config:set MONGODB_URI=your.mongodb.uri
     git push heroku main
     ```
+
+34. Instalación de [EsLint](https://eslint.org/).
+
+    ```
+    npm install -E --save-dev eslint
+    ```
+
+35. Configuración de EsLint para que use la [guía de estilo JavaScript de Airbnb](https://github.com/airbnb/javascript).
+
+    ```
+    node_modules/.bin/eslint --init
+    ```
+
+36. Creación de un archivo `.eslintignore` para evitar que el linter revise el contenido del directorio `build`.
+
+    ```
+    echo "build" > .eslintignore
+    ```
+
+37. Adición de un script para ejecutar el linter en `package.json`
+
+    ```
+    "lint": "eslint ."
+    ```
+
+38. Solución de los errores marcados por el linter con la ayuda de la [extensión de EsLint para VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).

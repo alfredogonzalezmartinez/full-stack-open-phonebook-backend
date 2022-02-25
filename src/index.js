@@ -1,6 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-const { morgan, logFormat } = require("./config/morgan");
+const express = require('express');
+const cors = require('cors');
+const { morgan, logFormat } = require('./config/morgan');
 
 const {
   getAllPersons,
@@ -9,49 +9,49 @@ const {
   updatePerson,
   deletePerson,
   getInfo,
-} = require("./api");
+} = require('./api');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(morgan(logFormat));
-app.use(express.static("build"));
+app.use(express.static('build'));
 
-app.get("/info", (request, response, next) => {
+app.get('/info', (request, response, next) => {
   getInfo()
     .then((info) => response.send(info))
     .catch(next);
 });
 
-app.get("/api/persons", (request, response, next) => {
+app.get('/api/persons', (request, response, next) => {
   getAllPersons()
     .then((persons) => response.json(persons))
     .catch(next);
 });
 
-app.get("/api/persons/:id", (request, response, next) => {
+app.get('/api/persons/:id', (request, response, next) => {
   const { id } = request.params;
   getPerson(id)
     .then((person) => (person ? response.json(person) : next()))
     .catch(next);
 });
 
-app.delete("/api/persons/:id", (request, response, next) => {
+app.delete('/api/persons/:id', (request, response, next) => {
   const { id } = request.params;
   deletePerson(id)
     .then(() => response.status(204).end())
     .catch(next);
 });
 
-app.post("/api/persons", (request, response, next) => {
+app.post('/api/persons', (request, response, next) => {
   const { name, number } = request.body;
   addPerson({ name, number })
     .then((newPerson) => response.json(newPerson))
     .catch(next);
 });
 
-app.put("/api/persons/:id", (request, response, next) => {
+app.put('/api/persons/:id', (request, response, next) => {
   const { id } = request.params;
   const { name, number } = request.body;
   updatePerson({ id, name, number })
@@ -59,21 +59,19 @@ app.put("/api/persons/:id", (request, response, next) => {
     .catch(next);
 });
 
-app.use((request, response, next) => {
+app.use((request, response) => {
   response.status(404).end();
 });
 
-app.use((error, request, response, next) => {
-  console.log(error);
-  if (error.name === "CastError")
-    return response.status(400).json({ error: "malformatted id" });
-  if (error.name === "ValidationError")
-    return response.status(400).json({ error: error.message });
-  response.status(500).end();
+app.use((error, request, response) => {
+  console.error(error);
+  if (error.name === 'CastError') { return response.status(400).json({ error: 'malformatted id' }); }
+  if (error.name === 'ValidationError') { return response.status(400).json({ error: error.message }); }
+  return response.status(500).end();
 });
 
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.info(`Server running on port ${PORT}`);
 });

@@ -1,10 +1,7 @@
-const morgan = require("morgan");
+const morgan = require('morgan');
 
-morgan.token("postData", function getPostData(req) {
-  if (req.method === "POST") return JSON.stringify(req.body);
-});
+morgan.token('requestData', (req) => JSON.stringify(req.body));
 
-const logFormat =
-  ":method :url :status :res[content-length] - :response-time ms :postData";
+const logFormat = ':method :url :status :res[content-length] - :response-time ms :requestData';
 
 module.exports = { morgan, logFormat };
